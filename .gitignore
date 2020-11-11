@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# >>>>> added by sam >>>>>>>>>>>
+.vscode/*
+dev_notes.md

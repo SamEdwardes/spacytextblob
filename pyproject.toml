@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "spacytextblob"
+version = "0.1.1"
+description = "A TextBlob sentiment analysis pipeline compponent for spaCy."
+authors = ["SamEdwardes <edwardes.s@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/SamEdwardes/spaCyTextBlob"
+documentation = "https://github.com/SamEdwardes/spaCyTextBlob/blob/main/README.md"
+keywords = ["python", "spacy", "textblob", "nlp"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+textblob = "^0.15.3"
+spacy = "^2.3.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.2"
+en_core_web_sm = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.1.0/en_core_web_sm-2.1.0.tar.gz#egg=en_core_web_sm"}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
