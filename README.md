@@ -1,2 +1,2 @@
-# spaCy_TextBlob_sentiment
+# spaCyTextBlob
 A TextBlob sentiment analysis pipeline compponent for spaCy.
