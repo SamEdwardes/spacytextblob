@@ -1,15 +1,15 @@
 module.exports = {
-  title: 'My Site',
-  tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'spaCyTextBlob',
+  tagline: 'Easy sentiment analysis for spaCy using TextBlob',
+  url: 'https://spacytextblob.netlify.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'SamEdwardes', // Usually your GitHub org/user name.
+  projectName: 'spaCyTextBlob', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: 'spaCyTextBlob',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
