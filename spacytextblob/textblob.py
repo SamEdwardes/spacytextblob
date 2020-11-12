@@ -21,7 +21,7 @@ class SpacyTextBlob(object):
         doc._.set("polarity", sentiment.polarity)
         doc._.set("subjectivity", sentiment.subjectivity)
         doc._.set("assessments", sentiment.assessments)
-        
+
         # sentiment on the sentence level
         for span in doc.sents:
             blob = TextBlob(span.text)
@@ -29,6 +29,5 @@ class SpacyTextBlob(object):
             span._.set("polarity", sentiment.polarity)
             span._.set("subjectivity", sentiment.subjectivity)
             span._.set("assessments", sentiment.assessments)
-        
-        # sentiment at the sentence level
+
         return doc
