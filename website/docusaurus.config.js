@@ -1,7 +1,7 @@
 module.exports = {
   title: 'spaCyTextBlob',
   tagline: 'Easy sentiment analysis for spaCy using TextBlob',
-  url: 'https://spacytextblob.netlify.com',
+  url: 'https://spacytextblob.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
@@ -12,7 +12,7 @@ module.exports = {
       title: 'spaCyTextBlob',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {

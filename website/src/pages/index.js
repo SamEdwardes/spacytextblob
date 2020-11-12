@@ -8,41 +8,58 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: 'Easy to Use',
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
-  },
-  {
-    title: 'Focus on What Matters',
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
-  },
-  {
-    title: 'Powered by React',
-    imageUrl: 'img/undraw_docusaurus_react.svg',
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        <h2>
+          Installation
+        </h2>
+        <p>
+          Install spacytextblob using pip:
+        </p>
+        <pre>
+          pip install spacytextblob
+        </pre>
+        Then
+        <pre>
+          pip install spacytextblob
+        </pre>
+        <h2>
+          Quickstart
+        </h2>
+        Load the pipeline into spacy pipeline:
+        <pre class="python">
+          >>> import spacy <br/>
+          >>> from spacytextblob.textblob import SpacyTextBlob <br/>
+          >>> <br/>
+          >>> nlp = spacy.load('en_core_web_sm') <br/>
+          >>> spacy_text_blob = SpacyTextBlob() <br/>
+          >>> nlp.add_pipe(spacy_text_blob) <br/>
+          >>> <br/>
+          >>> # pipeline contains component name <br/>
+          >>> print(nlp.pipe_names) <br/>
+          ['tagger', 'parser', 'ner', 'spaCyTextBlob'] <br/>
+        </pre>
+        Now you can use the spacy nlp object like normal:
+        <pre class="python">
+          >>> text = "I had a really horrible day. It was the worst day ever!" <br/>
+          >>> doc = nlp(text) <br/>
+          >>> print('Polarity:', doc._.polarity) <br/>
+          Polarity: 0.55 <br/>
+          >>> print('Sujectivity:', doc._.subjectivity) <br/>
+          Sujectivity: 0.65 <br/>
+          >>> print('Assessments:', doc._.assessments) <br/>
+          Assessments: [(['wow'], 0.1, 1.0, None), (['best', '!'], 1.0, 0.3, None)] <br/>
+        </pre>
       </>
     ),
   },
 ];
 
+
 function Feature({imageUrl, title, description}) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={clsx('col col--4', styles.feature)}>
+    <div className={clsx('col col--12', styles.feature)}>
       {imgUrl && (
         <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title} />
