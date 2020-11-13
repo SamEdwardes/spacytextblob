@@ -4,9 +4,11 @@ from textblob import TextBlob
 
 
 class SpacyTextBlob(object):
+    """A spacy pipeline object"""
     name = "spaCyTextBlob"
 
     def __init__(self):
+        """Set up the ojbect"""
         Doc.set_extension("polarity", default=None)
         Doc.set_extension("subjectivity", default=None)
         Doc.set_extension("assessments", default=None)
@@ -15,6 +17,18 @@ class SpacyTextBlob(object):
         Span.set_extension("assessments", default=None)
 
     def __call__(self, doc):
+        """When the nlp is called
+
+        Parameters
+        ----------
+        doc : [type]
+            [description]
+
+        Returns
+        -------
+        [type]
+            [description]
+        """
         # sentiment at the doc level
         blob = TextBlob(doc.text)
         sentiment = blob.sentiment_assessments

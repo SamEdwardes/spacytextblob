@@ -1,5 +1,5 @@
 import spacy
-from spacytextblob.textblob import SpacyTextBlob
+from spacytextblob.spacytextblob import SpacyTextBlob
 
 nlp = spacy.load("en_core_web_sm")
 spacy_text_blob = SpacyTextBlob()
