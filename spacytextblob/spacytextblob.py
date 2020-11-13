@@ -4,31 +4,18 @@ from textblob import TextBlob
 
 
 class SpacyTextBlob(object):
-    """A spacy pipeline object"""
+    """A spacy pipeline object for sentiment analysis."""
     name = "spaCyTextBlob"
 
     def __init__(self):
-        """Set up the ojbect"""
-        Doc.set_extension("polarity", default=None)
-        Doc.set_extension("subjectivity", default=None)
-        Doc.set_extension("assessments", default=None)
-        Span.set_extension("polarity", default=None)
-        Span.set_extension("subjectivity", default=None)
-        Span.set_extension("assessments", default=None)
+        Doc.set_extension("polarity", default=None, force=True)
+        Doc.set_extension("subjectivity", default=None, force=True)
+        Doc.set_extension("assessments", default=None, force=True)
+        Span.set_extension("polarity", default=None, force=True)
+        Span.set_extension("subjectivity", default=None, force=True)
+        Span.set_extension("assessments", default=None, force=True)
 
     def __call__(self, doc):
-        """When the nlp is called
-
-        Parameters
-        ----------
-        doc : [type]
-            [description]
-
-        Returns
-        -------
-        [type]
-            [description]
-        """
         # sentiment at the doc level
         blob = TextBlob(doc.text)
         sentiment = blob.sentiment_assessments
