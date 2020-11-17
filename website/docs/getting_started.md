@@ -40,8 +40,8 @@ nlp.add_pipe(spacy_text_blob)
 print(nlp.pipe_names) 
 ```
 
-    ['tagger', 'parser', 'ner', 'spaCyTextBlob']
-
+    ['tagger', 'parser', 'ner', 'text_blob_sentiment']
+    
 
 Then you can call nlp() as you usually would and sentiment analysis will be automtically performed.
 
@@ -49,12 +49,17 @@ Then you can call nlp() as you usually would and sentiment analysis will be auto
 ```python
 text = "I had a really horrible day. It was the worst day ever! But every now and then I have a really good day that makes me happy."
 doc = nlp(text)
-print('Polarity:', doc._.polarity)
-print('Sujectivity:', doc._.subjectivity)
-print('Assessments:', doc._.assessments)
+print('Polarity:', doc._.sentiment.polarity)
+print('Sujectivity:', doc._.sentiment.subjectivity)
+print('Assessments:', doc._.sentiment.assessments)
 ```
 
     Polarity: -0.125
     Sujectivity: 0.9
     Assessments: [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None), (['really', 'good'], 0.7, 0.6000000000000001, None), (['happy'], 0.8, 1.0, None)]
+    
 
+
+```python
+
+```

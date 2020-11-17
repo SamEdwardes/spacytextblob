@@ -27,16 +27,16 @@ const codeContent = {
   >>>
   >>> # pipeline contains component name
   >>> print(nlp.pipe_names)
-  ['tagger', 'parser', 'ner', 'spaCyTextBlob']
+  ['tagger', 'parser', 'ner', 'text_blob_sentiment']
   `,
   quickstartNLP:`
   >>> text = "I had a really horrible day. It was the worst day ever!" 
   >>> doc = nlp(text) 
-  >>> print('Polarity:', doc._.polarity) 
+  >>> print('Polarity:', doc._.sentiment.polarity) 
   Polarity: 0.55 
-  >>> print('Sujectivity:', doc._.subjectivity) 
+  >>> print('Sujectivity:', doc._.sentiment.subjectivity) 
   Sujectivity: 0.65 
-  >>> print('Assessments:', doc._.assessments) 
+  >>> print('Assessments:', doc._.sentiment.assessments) 
   Assessments: [(['wow'], 0.1, 1.0, None), (['best', '!'], 1.0, 0.3, None)]     
   `
 }
