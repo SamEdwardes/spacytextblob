@@ -2,12 +2,7 @@ import spacy
 from spacytextblob.spacytextblob import SpacyTextBlob
 
 nlp = spacy.load("en_core_web_sm")
-spacy_text_blob = SpacyTextBlob()
-nlp.add_pipe(spacy_text_blob)
-
-
-def test_pipeline_component():
-    assert nlp.pipe_names[-1] == "spaCyTextBlob"
+nlp.add_pipe("spacytextblob")
 
 
 def test_sentiment():
