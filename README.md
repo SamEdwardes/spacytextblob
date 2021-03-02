@@ -41,10 +41,13 @@ import spacy
 from spacytextblob.spacytextblob import SpacyTextBlob
 
 nlp = spacy.load('en_core_web_sm')
-spacy_text_blob = SpacyTextBlob()
-nlp.add_pipe(spacy_text_blob)
+nlp.add_pipe("spacytextblob")
 text = "I had a really horrible day. It was the worst day ever! But every now and then I have a really good day that makes me happy."
 doc = nlp(text)
+```
+
+
+```python
 print('Polarity:', doc._.polarity)
 ```
 
