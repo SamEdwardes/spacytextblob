@@ -2,6 +2,18 @@
 
 spaCyTextBlob is happy to accept contributions from the community. Please review the guidelines below.
 
+## Code formatting
+
+Please use the [black](https://black.readthedocs.io/en/stable/) for formatting code before submitting a PR.
+
+## Testing
+
+Please validate that all tests pass before submitting a PR by running:
+
+```bash
+pytest
+```
+
 ## Docs
 
 To build the docs please run:
