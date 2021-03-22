@@ -1,6 +1,6 @@
 # spaCyTextBlob
 
-A TextBlob sentiment analysis pipeline compponent for spaCy.
+A TextBlob sentiment analysis pipeline component for spaCy.
 
 - [Docs](https://spacytextblob.netlify.app/)
 - [GitHub](https://github.com/SamEdwardes/spaCyTextBlob)
