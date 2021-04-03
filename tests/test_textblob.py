@@ -58,10 +58,3 @@ def test_compare_to_text_blob():
     assert blob.polarity == doc._.polarity
     assert blob.subjectivity == doc._.subjectivity
     assert blob.sentiment_assessments[2] == doc._.assessments
-    
-
-    
-    
-    
-    
-    

@@ -64,23 +64,23 @@ print('Polarity:', doc._.polarity)
 ```
 
     Polarity: -0.125
-
+    
 
 
 ```python
-print('Sujectivity:', doc._.subjectivity)
+print('Sujectivity:', doc._.sentiment.subjectivity)
 ```
 
     Sujectivity: 0.9
-
+    
 
 
 ```python
-print('Assessments:', doc._.assessments)
+print('Assessments:', doc._.sentiment.assessments)
 ```
 
     Assessments: [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None), (['really', 'good'], 0.7, 0.6000000000000001, None), (['happy'], 0.8, 1.0, None)]
-
+    
 
 Using `TextBlob`:
 

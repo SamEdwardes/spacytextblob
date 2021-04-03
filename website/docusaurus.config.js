@@ -8,6 +8,9 @@ module.exports = {
   organizationName: 'SamEdwardes', // Usually your GitHub org/user name.
   projectName: 'spaCyTextBlob', // Usually your repo name.
   themeConfig: {
+    prism: {
+      theme: require('prism-react-renderer/themes/github'),
+    },
     navbar: {
       title: 'spaCyTextBlob',
       logo: {

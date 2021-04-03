@@ -42,4 +42,3 @@ class SpacyTextBlob(object):
     
     def get_assessments(self, doc):
         return self.get_sentiment(doc).assessments
-    
