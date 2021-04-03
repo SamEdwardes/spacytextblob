@@ -10,19 +10,18 @@ class SpacyTextBlob(object):
     
     def __init__(self, nlp, name):
         # Register custom extensions
-        if not Doc.has_extension("polarity"):            
-            Doc.set_extension("polarity", default=None)
-            Doc.set_extension("subjectivity", default=None)
-            Doc.set_extension("assessments", default=None)
-            Span.set_extension("polarity", getter=self.get_polarity)
-            Span.set_extension("subjectivity", getter=self.get_subjectivity)
-            Span.set_extension("assessments", getter=self.get_assessments)
-            Token.set_extension("polarity", getter=self.get_polarity)
-            Token.set_extension("subjectivity", getter=self.get_subjectivity)
-            Token.set_extension("assessments", getter=self.get_assessments)
+        extensions = ["polarity", "subjectivity", "assessments"]
+        getters = [self.get_polarity, self.get_subjectivity, self.get_assessments]
+        for ext, get in zip(extensions, getters):
+            if not Doc.has_extension(ext):
+                Doc.set_extension(ext, default=None)
+            if not Span.has_extension(ext):
+                Span.set_extension(ext, getter=get)
+            if not Token.has_extension(ext):
+                Token.set_extension(ext, getter=get)
 
     def __call__(self, doc):
-        # sentiment at the doc level
+        # Sentiment at the doc level
         sentiment = self.get_sentiment(doc)
         doc._.set("polarity", sentiment.polarity)
         doc._.set("subjectivity", sentiment.subjectivity)
