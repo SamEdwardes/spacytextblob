@@ -25,7 +25,7 @@ python -m spacy download en_core_web_sm
 
 ## Quickstart
 
-First you need to add SpacyTextBlob to the end of the spaCy pipeline.
+First you need to add SpacyTextBlob into the spaCy pipeline. Note that as of spaCy version 3.0 the method of adding a custom pipeline component has changed.
 
 
 ```python
@@ -33,33 +33,76 @@ import spacy
 from spacytextblob.spacytextblob import SpacyTextBlob
 
 nlp = spacy.load('en_core_web_sm')
-spacy_text_blob = SpacyTextBlob()
-nlp.add_pipe(spacy_text_blob)
-
-# pipeline contains component name
+nlp.add_pipe("spacytextblob")
 print(nlp.pipe_names) 
 ```
 
-    ['tagger', 'parser', 'ner', 'text_blob_sentiment']
-    
+    ['tok2vec', 'tagger', 'parser', 'ner', 'attribute_ruler', 'lemmatizer', 'spacytextblob']
 
-Then you can call nlp() as you usually would and sentiment analysis will be automtically performed.
+
+Then you can call `nlp()` as you usually would and sentiment analysis will automtically be performed.
 
 
 ```python
 text = "I had a really horrible day. It was the worst day ever! But every now and then I have a really good day that makes me happy."
 doc = nlp(text)
-print('Polarity:', doc._.sentiment.polarity)
-print('Sujectivity:', doc._.sentiment.subjectivity)
-print('Assessments:', doc._.sentiment.assessments)
+print('Polarity:', doc._.polarity)
 ```
 
     Polarity: -0.125
+
+
+
+```python
+print('Sujectivity:', doc._.subjectivity)
+```
+
     Sujectivity: 0.9
+
+
+
+```python
+print('Assessments:', doc._.assessments)
+```
+
     Assessments: [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None), (['really', 'good'], 0.7, 0.6000000000000001, None), (['happy'], 0.8, 1.0, None)]
     
 
 
-```python
 
+## Comparison to `TextBlob`
+
+
+```python
+from textblob import TextBlob
+text = "I had a really horrible day. It was the worst day ever! But every now and then I have a really good day that makes me happy."
+doc = nlp(text)
+blob = TextBlob(text)
 ```
+
+
+```python
+print('Polarity:', doc._.polarity, blob.sentiment.polarity)
+```
+
+    Polarity: -0.125 -0.125
+
+
+
+```python
+print('Subjectivity:', doc._.subjectivity, blob.sentiment.subjectivity)
+```
+
+    Subjectivity: 0.9 0.9
+
+
+
+```python
+print('Polarity:')
+print(doc._.assessments)
+print(blob.sentiment_assessments.assessments)
+```
+
+    Polarity:
+    [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None), (['really', 'good'], 0.7, 0.6000000000000001, None), (['happy'], 0.8, 1.0, None)]
+    [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None), (['really', 'good'], 0.7, 0.6000000000000001, None), (['happy'], 0.8, 1.0, None)]

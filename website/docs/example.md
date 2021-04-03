@@ -10,8 +10,7 @@ import spacy
 from spacytextblob.spacytextblob import SpacyTextBlob
 
 nlp = spacy.load('en_core_web_sm')
-spacy_text_blob = SpacyTextBlob()
-nlp.add_pipe(spacy_text_blob)
+nlp.add_pipe("spacytextblob")
 
 text = "I had a really horrible day. It was the worst day ever! But every now and then I have a really good day that makes me happy."
 doc = nlp(text)
@@ -113,8 +112,7 @@ import spacy
 from spacytextblob.spacytextblob import SpacyTextBlob
 
 nlp = spacy.load('en_core_web_sm')
-spacy_text_blob = SpacyTextBlob()
-nlp.add_pipe(spacy_text_blob)
+nlp.add_pipe("spacytextblob")
 
 text1 = "I had a really horrible day. It was the worst day ever! But every now and then I have a really good day that makes me happy."
 text2 = "Wow I had just the best day ever today! I cannot wait to tell the world."

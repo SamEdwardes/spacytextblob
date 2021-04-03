@@ -19,25 +19,24 @@ const codeContent = {
   `,
   quickstartImport: `
   >>> import spacy
-  >>> from spacytextblob.textblob import SpacyTextBlob
+  >>> from spacytextblob.spacytextblob import SpacyTextBlob
   >>>
   >>> nlp = spacy.load('en_core_web_sm')
-  >>> spacy_text_blob = SpacyTextBlob()
-  >>> nlp.add_pipe(spacy_text_blob)
+  >>> nlp.add_pipe("spacytextblob")
   >>>
   >>> # pipeline contains component name
   >>> print(nlp.pipe_names)
-  ['tagger', 'parser', 'ner', 'text_blob_sentiment']
+  ['tok2vec', 'tagger', 'parser', 'ner', 'attribute_ruler', 'lemmatizer', 'spacytextblob']
   `,
   quickstartNLP:`
   >>> text = "I had a really horrible day. It was the worst day ever!" 
   >>> doc = nlp(text) 
-  >>> print('Polarity:', doc._.sentiment.polarity) 
-  Polarity: 0.55 
-  >>> print('Sujectivity:', doc._.sentiment.subjectivity) 
-  Sujectivity: 0.65 
-  >>> print('Assessments:', doc._.sentiment.assessments) 
-  Assessments: [(['wow'], 0.1, 1.0, None), (['best', '!'], 1.0, 0.3, None)]     
+  >>> print('Polarity:', doc._.polarity) 
+  Polarity: -1.0
+  >>> print('Subjectivity:', doc._.subjectivity) 
+  Subjectivity: 1.0
+  >>> print('Assessments:', doc._.assessments) 
+  Assessments: [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None)]  
   `
 }
 
@@ -48,7 +47,7 @@ function Home() {
   return (
     <Layout
       title={`Home`}
-      description="Easy sentiment analysis for spaCy using TextBlob">
+      description="Easy sentiment analysis for spaCy using TextBlob. Now updated for spaCy 3.0!">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>

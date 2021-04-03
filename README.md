@@ -1,6 +1,10 @@
 # spaCyTextBlob
 
-A TextBlob sentiment analysis pipeline component for spaCy.
+A TextBlob sentiment analysis pipeline compponent for spaCy. 
+
+Version 3.0 is a major version update providing support for spaCy 3.0's new interface for adding pipeline components. As a result, it is not backwards compatible with previous versions of spaCyTextBlob. For compatability with spaCy 2.0 please use `pip install spacytextblob==0.1.7`.
+
+*Note that version 1.0, and 2.0 have been skipped. The numbering has been aligned with spaCy's version numbering in the hopes of making it easier to compar.*
 
 - [Docs](https://spacytextblob.netlify.app/)
 - [GitHub](https://github.com/SamEdwardes/spaCyTextBlob)
@@ -10,7 +14,7 @@ A TextBlob sentiment analysis pipeline component for spaCy.
 
 - [Install](#install)
 - [Quick Start](#quick-start)
-- [API](#api)
+- [Quick Reference](#quick-reference)
 - [Reference and Attribution](#reference-and-attribution)
 
 ## Install
@@ -35,17 +39,28 @@ python -m spacy download en_core_web_sm
 
 ## Quick Start
 
+spaCyTextBlob allows you to access all of the attributes created by TextBlob sentiment method but within the spaCy framework. The code below will demonstrate how to use spaCyTextBlob on a simple string.
+
+
+```python
+text = "I had a really horrible day. It was the worst day ever! But every now and then I have a really good day that makes me happy."
+```
+
+Using `spaCyTextBlob`:
+
 
 ```python
 import spacy
 from spacytextblob.spacytextblob import SpacyTextBlob
 
 nlp = spacy.load('en_core_web_sm')
-spacy_text_blob = SpacyTextBlob()
-nlp.add_pipe(spacy_text_blob)
-text = "I had a really horrible day. It was the worst day ever! But every now and then I have a really good day that makes me happy."
+nlp.add_pipe("spacytextblob")
 doc = nlp(text)
-print('Polarity:', doc._.sentiment.polarity)
+```
+
+
+```python
+print('Polarity:', doc._.polarity)
 ```
 
     Polarity: -0.125
@@ -66,6 +81,50 @@ print('Assessments:', doc._.sentiment.assessments)
 
     Assessments: [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None), (['really', 'good'], 0.7, 0.6000000000000001, None), (['happy'], 0.8, 1.0, None)]
     
+
+Using `TextBlob`:
+
+
+```python
+from textblob import TextBlob
+blob = TextBlob(text)
+```
+
+
+```python
+print(blob.sentiment_assessments.polarity)
+```
+
+    -0.125
+
+
+
+```python
+print(blob.sentiment_assessments.subjectivity)
+```
+
+    0.9
+
+
+
+```python
+print(blob.sentiment_assessments.assessments)
+```
+
+    [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None), (['really', 'good'], 0.7, 0.6000000000000001, None), (['happy'], 0.8, 1.0, None)]
+
+
+## Quick Reference
+
+spaCyTextBlob performs sentiment analysis using the [TextBlob](https://textblob.readthedocs.io/en/dev/quickstart.html) library. Adding spaCyTextBlob to a spaCy nlp pipeline provides access to three new extension attributes.
+
+- `._.polarity`
+- `._.subjectivity`
+- `._.assessments`
+
+These extension attributes can be accessed at the `Doc`, `Span`, or `Token` level.
+
+Polarity is a float within the range [-1.0, 1.0], subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective, and assessments is a list of polarity and subjectivity scores for the assessed tokens.
 
 ## Reference and Attribution
 
