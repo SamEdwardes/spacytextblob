@@ -10,7 +10,7 @@ documentation = "https://spacytextblob.netlify.app/"
 keywords = ["python", "spacy", "textblob", "nlp"]
 
 [tool.poetry.dependencies]
-python = "^3.6.9"
+python = "^3.6"
 textblob = "^0.15.3"
 spacy = "^3.0"
 
