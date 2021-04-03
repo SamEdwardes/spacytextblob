@@ -1,6 +1,6 @@
 module.exports = {
   title: 'spaCyTextBlob',
-  tagline: 'Easy sentiment analysis for spaCy using TextBlob',
+  tagline: 'Easy sentiment analysis for spaCy using TextBlob. Now supports spaCy 3.0!',
   url: 'https://spacytextblob.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',

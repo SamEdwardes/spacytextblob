@@ -47,7 +47,7 @@ function Home() {
   return (
     <Layout
       title={`Home`}
-      description="Easy sentiment analysis for spaCy using TextBlob. Now updated for spaCy 3.0!">
+      description="Easy sentiment analysis for spaCy using TextBlob">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
