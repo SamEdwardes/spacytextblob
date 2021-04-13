@@ -71,7 +71,7 @@ print('Polarity:', doc._.polarity)
 print('Subjectivity:', doc._.subjectivity)
 ```
 
-    Sujectivity: 0.9
+    Subjectivity: 0.9
     
 
 
