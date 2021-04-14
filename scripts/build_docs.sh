@@ -9,5 +9,3 @@ echo "-------------"
 jupyter nbconvert --to markdown --execute website/docs/getting_started.ipynb
 echo "-------------"
 jupyter nbconvert --to markdown --execute website/docs/example.ipynb
-echo "-------------"
-jupyter nbconvert --to markdown --execute website/docs/api.ipynb --no-input
