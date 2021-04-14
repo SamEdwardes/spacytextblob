@@ -8,4 +8,4 @@ jupyter nbconvert --to markdown --execute README.ipynb
 echo "-------------"
 jupyter nbconvert --to markdown --execute website/docs/getting_started.ipynb
 echo "-------------"
-jupyter nbconvert --to markdown --execute website/docs/example.ipynbgit
+jupyter nbconvert --to markdown --execute website/docs/example.ipynb
