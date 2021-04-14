@@ -16,7 +16,7 @@ text = "I had a really horrible day. It was the worst day ever! But every now an
 doc = nlp(text)
 ```
 
-By adding the pipeline, the extensions  `._.polarity`, `._.subjectivity`, and `._.assessments` will be added to `Doc`, `Span`, and `Token` objects.  You can assess specific details below:
+By adding the pipeline, the extensions  `._.polarity`, `._.subjectivity`, and `._.assessments` will be added to `Doc`, `Span`, and `Token` objects. You can assess specific details below:
 - `.polarity`: a float within the range (-1.0, 1.0)
 - `.subjectivity`: a float within the range (0.0, 1.0) where 0.0 is very objective and 1.0 is very subjective
 - `.assessments`: a list of polarity and subjectivity scores for the assessed tokens.
@@ -27,7 +27,7 @@ print(doc._.polarity)
 ```
 
     -0.125
-    
+
 
 
 ```python
@@ -35,7 +35,7 @@ print(doc._.subjectivity)
 ```
 
     0.9
-    
+
 
 
 ```python
@@ -43,20 +43,9 @@ print(doc._.assessments)
 ```
 
     [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None), (['really', 'good'], 0.7, 0.6000000000000001, None), (['happy'], 0.8, 1.0, None)]
-    
+
 
 You can identify the sentiment at the `Span` or `Token` level.
-
-
-```python
-for span in doc.sents:
-    print(span.text, span._.polarity, span._.subjectivity)
-```
-
-    I had a really horrible day. -1.0 1.0
-    It was the worst day ever! -1.0 1.0
-    But every now and then I have a really good day that makes me happy. 0.75 0.8
-    
 
 
 ```python
@@ -94,7 +83,18 @@ for token in doc:
     me 0.0 0.0
     happy 0.8 1.0
     . 0.0 0.0
-    
+
+
+
+```python
+for span in doc.sents:
+    print(span.text, span._.polarity, span._.subjectivity)
+```
+
+    I had a really horrible day. -1.0 1.0
+    It was the worst day ever! -1.0 1.0
+    But every now and then I have a really good day that makes me happy. 0.75 0.8
+
 
 ## Using on a multiple texts
 
@@ -127,4 +127,4 @@ for doc in docs:
     Polarity: 0.55
     Sujectivity: 0.65
     Assessments: [(['wow'], 0.1, 1.0, None), (['best', '!'], 1.0, 0.3, None)]
-    
+
