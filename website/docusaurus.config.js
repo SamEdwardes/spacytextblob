@@ -4,7 +4,7 @@ module.exports = {
   url: 'https://spacytextblob.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
   organizationName: 'SamEdwardes', // Usually your GitHub org/user name.
   projectName: 'spaCyTextBlob', // Usually your repo name.
   themeConfig: {

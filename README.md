@@ -1,4 +1,4 @@
-# spaCyTextBlob
+<img src="website/static/img/linkedin_banner_image_1.png" width="40%">
 
 A TextBlob sentiment analysis pipeline compponent for spaCy. 
 
