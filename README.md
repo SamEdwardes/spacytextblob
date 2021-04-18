@@ -1,4 +1,4 @@
-<img src="website/static/img/linkedin_banner_image_1.png" width="40%">
+# spaCyTextBlob <a href='https://spacytextblob.netlify.app/'><img src='website/static/img/logo-thumb-circle-250x250.png' align="right" height="139" /></a>
 
 A TextBlob sentiment analysis pipeline compponent for spaCy. 
 
