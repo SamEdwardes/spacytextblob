@@ -15,7 +15,7 @@ module.exports = {
       title: 'spaCyTextBlob',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.png',
+        src: 'img/favicon-250x250.png',
       },
       items: [
         {
