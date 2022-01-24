@@ -1,5 +1,11 @@
 # spaCyTextBlob <a href='https://spacytextblob.netlify.app/'><img src='website/static/img/logo-thumb-circle-250x250.png' align="right" height="139" /></a>
 
+[![PyPI version](https://badge.fury.io/py/spacytextblob.svg)](https://badge.fury.io/py/spacytextblob)
+[![pytest](https://github.com/SamEdwardes/spaCyTextBlob/actions/workflows/pytest.yml/badge.svg)](https://github.com/SamEdwardes/spaCyTextBlob/actions/workflows/pytest.yml)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/spacytextblob?label=PyPi%20Downloads)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e2f2caac-7239-45a2-b145-a00205c3befb/deploy-status)](https://app.netlify.com/sites/spacytextblob/deploys)
+
+
 A TextBlob sentiment analysis pipeline compponent for spaCy. 
 
 Version 3.0 is a major version update providing support for spaCy 3.0's new interface for adding pipeline components. As a result, it is not backwards compatible with previous versions of spaCyTextBlob. For compatability with spaCy 2.0 please use `pip install spacytextblob==0.1.7`.
