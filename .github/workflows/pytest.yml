@@ -27,12 +27,13 @@ jobs:
     - name: Install python dependencies
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-        poetry export --without-hashes --dev --output requirements.txt
+        poetry export --without-hashes --output requirements.txt
         python -m pip install --upgrade pip
         pip install wheel
         pip install -r requirements.txt
         python -m textblob.download_corpora
         python -m spacy download en_core_web_sm
+        pip install pytest
     - name: Test with pytest
       run: |
         pytest
