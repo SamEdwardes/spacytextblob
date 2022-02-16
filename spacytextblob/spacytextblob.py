@@ -1,14 +1,15 @@
+from typing import Optional
 from spacy.tokens import Doc, Span, Token
 from spacy.language import Language
 
 from textblob import TextBlob
 
 
-@Language.factory("spacytextblob")
+@Language.factory("spacytextblob", default_config={"some_setting": True})
 class SpacyTextBlob(object):
     """A spacy pipeline object for sentiment analysis."""
     
-    def __init__(self, nlp, name):
+    def __init__(self, nlp, name, some_setting: Optional[bool]):
         # Register custom extensions
         extensions = ["polarity", "subjectivity", "assessments"]
         getters = [self.get_polarity, self.get_subjectivity, self.get_assessments]
