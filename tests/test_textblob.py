@@ -58,3 +58,22 @@ def test_compare_to_text_blob():
     assert blob.polarity == doc._.polarity
     assert blob.subjectivity == doc._.subjectivity
     assert blob.sentiment_assessments[2] == doc._.assessments
+
+
+def test_textblob_fr():
+    from textblob import TextBlob
+    from textblob_fr import PatternTagger, PatternAnalyzer
+
+    # Using TextBlob
+    text = u"Quelle belle matinée"
+    blob = TextBlob(text, pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
+    assert blob.tags == [('Quelle', 'DT'), ('belle', 'JJ'), ('matin\xe9e', 'NN')]
+    assert blob.sentiment == (0.8, 0.8)
+
+    # Using spacytextblob
+    nlp_fr = spacy.load("en_core_web_sm")
+    nlp_fr.add_pipe("spacytextblob", config={"pos_tagger": PatternTagger, "analyzer": PatternAnalyzer})
+    doc = nlp(text)
+    assert blob.tags == [('Quelle', 'DT'), ('belle', 'JJ'), ('matin\xe9e', 'NN')]
+    assert blob.sentiment == (0.8, 0.8)
+

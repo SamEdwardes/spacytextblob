@@ -1,15 +1,15 @@
-from typing import Optional
+from typing import Optional, Callable
 from spacy.tokens import Doc, Span, Token
 from spacy.language import Language
 
 from textblob import TextBlob
 
 
-@Language.factory("spacytextblob", default_config={"some_setting": True})
+@Language.factory("spacytextblob", default_config={"pos_tagger": None, "analyzer": None})
 class SpacyTextBlob(object):
     """A spacy pipeline object for sentiment analysis."""
     
-    def __init__(self, nlp, name, some_setting: Optional[bool]):
+    def __init__(self, nlp, name, pos_tagger: Optional[Callable], analyzer: Optional[Callable]):
         # Register custom extensions
         extensions = ["polarity", "subjectivity", "assessments"]
         getters = [self.get_polarity, self.get_subjectivity, self.get_assessments]
@@ -21,6 +21,10 @@ class SpacyTextBlob(object):
             if not Token.has_extension(ext):
                 Token.set_extension(ext, getter=get)
 
+        # Set class attributes
+        self.pos_tagger = pos_tagger
+        self.analyzer = analyzer
+
     def __call__(self, doc):
         # Sentiment at the doc level
         sentiment = self.get_sentiment(doc)
@@ -31,7 +35,15 @@ class SpacyTextBlob(object):
         return doc
             
     def get_sentiment(self, doc):
-        blob = TextBlob(doc.text)
+        kwargs = {
+            "pos_tagger", self.pos_tagger, 
+            "analyzer", self.analyzer
+        }
+        
+        # Only keeps the kwargs that are note note.
+        kwargs = {k: v for k, v in kwargs.items() if v is not None}
+
+        blob = TextBlob(doc.text, **kwargs)
         sentiment = blob.sentiment_assessments
         return sentiment
     
