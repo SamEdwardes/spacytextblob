@@ -61,33 +61,72 @@ def test_compare_to_text_blob():
     assert blob.subjectivity == doc._.subjectivity
     assert blob.sentiment_assessments[2] == doc._.assessments
 
-
+    
 def test_textblob_fr():
-    from textblob import TextBlob
+    from textblob import Blobber
     from textblob_fr import PatternTagger, PatternAnalyzer
 
-    # Using TextBlob
     text = u"Quelle belle matinée"
-    blob = TextBlob(text, pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
+    tb = Blobber(pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
+    blob = tb(text)
     assert blob.sentiment == (0.8, 0.8)
 
-    # Using spacytextblob
-    @spacy.registry.misc("spacytextblob.pos_tagger")
-    def create_pos_tagger():
-        return PatternTagger()
 
-    @spacy.registry.misc("spacytextblob.analyzer")
-    def create_analyzer():
-        return PatternAnalyzer()
+def test_spacytextblob_fr():
+    from textblob import Blobber
+    from textblob_fr import PatternTagger, PatternAnalyzer
+
+    @spacy.registry.misc("spacytextblob.fr_blob")
+    def create_fr_blob():
+        tb = Blobber(pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
+        return tb
     
     config = {
         "blob_only": True,
-        "pos_tagger": {"@misc": "spacytextblob.pos_tagger"}, 
-        "analyzer":   {"@misc": "spacytextblob.analyzer"},
+        "custom_blob": {"@misc": "spacytextblob.fr_blob"}
     }
     
     nlp_fr = spacy.load("en_core_web_sm")
     nlp_fr.add_pipe("spacytextblob", config=config)
+    text = u"Quelle belle matinée"
     doc = nlp_fr(text)
     assert doc._.blob.sentiment == (0.8, 0.8)
+    
+    
+def test_textblob_de():
+    from textblob_de import TextBlobDE
+    from textblob import Sentence
+    text = '''Heute ist der 3. Mai 2014 und Dr. Meier feiert seinen 43. Geburtstag. Ich muss unbedingt daran denken, Mehl, usw. für einen Kuchen einzukaufen. Aber leider habe ich nur noch EUR 3.50 in meiner Brieftasche.'''
+    blob = TextBlobDE(text)
+    sentences = [
+        Sentence("Heute ist der 3. Mai 2014 und Dr. Meier feiert seinen 43. Geburtstag."),
+        Sentence("Ich muss unbedingt daran denken, Mehl, usw. für einen Kuchen einzukaufen."),
+        Sentence("Aber leider habe ich nur noch EUR 3.50 in meiner Brieftasche.")
+    ]
+    assert blob.sentences == sentences
 
+
+def test_spacytextblob_de():
+    from textblob_de import TextBlobDE
+    from textblob import Sentence
+    text = '''Heute ist der 3. Mai 2014 und Dr. Meier feiert seinen 43. Geburtstag. Ich muss unbedingt daran denken, Mehl, usw. für einen Kuchen einzukaufen. Aber leider habe ich nur noch EUR 3.50 in meiner Brieftasche.'''
+    
+    @spacy.registry.misc("spacytextblob.de_blob")
+    def create_de_blob():
+        return TextBlobDE
+    
+    config = {
+        "blob_only": True,
+        "custom_blob": {"@misc": "spacytextblob.de_blob"}
+    }
+    
+    nlp_de = spacy.load("en_core_web_sm")
+    nlp_de.add_pipe("spacytextblob", config=config)
+    doc = nlp_de(text)
+    
+    sentences = [
+        Sentence("Heute ist der 3. Mai 2014 und Dr. Meier feiert seinen 43. Geburtstag."),
+        Sentence("Ich muss unbedingt daran denken, Mehl, usw. für einen Kuchen einzukaufen."),
+        Sentence("Aber leider habe ich nur noch EUR 3.50 in meiner Brieftasche.")
+    ]
+    assert doc._.blob.sentences == sentences

@@ -7,15 +7,14 @@ from rich import inspect, print
 from textblob import TextBlob
 
 
-@Language.factory("spacytextblob", default_config={"blob_only": False, "pos_tagger": None, "analyzer": None})
+@Language.factory("spacytextblob", default_config={"blob_only": False, "custom_blob": None})
 def create_spacytextblob_component(
     nlp: Language, 
     name: str, 
     blob_only: bool, 
-    pos_tagger: Optional[Any], 
-    analyzer: Optional[Any]
+    custom_blob: Optional[Any], 
 ):
-    return SpacyTextBlob(nlp, blob_only, pos_tagger, analyzer)
+    return SpacyTextBlob(nlp, blob_only, custom_blob)
 
 
 class SpacyTextBlob(object):
@@ -25,12 +24,9 @@ class SpacyTextBlob(object):
         self, 
         nlp: Language, 
         blob_only: bool = False, 
-        pos_tagger: Optional[Any] = None, 
-        analyzer: Optional[Any] = None
+        custom_blob: Optional[Any] = None
     ):
         # Register custom extensions
-        print(f"{pos_tagger=}")
-        print(f"{analyzer=}")
         extensions = ["blob", "polarity", "subjectivity", "assessments"]
         getters = [self.get_blob, self.get_polarity, self.get_subjectivity, self.get_assessments]
         
@@ -44,8 +40,7 @@ class SpacyTextBlob(object):
 
         # Set class attributes
         self.blob_only = blob_only
-        self.pos_tagger = pos_tagger
-        self.analyzer = analyzer
+        self.custom_blob = custom_blob
 
     def __call__(self, doc):
         # Sentiment at the doc level
@@ -59,17 +54,12 @@ class SpacyTextBlob(object):
         return doc
     
     def create_blob(self, doc):
-        kwargs = {
-            "pos_tagger": self.pos_tagger, 
-            "analyzer": self.analyzer
-        }
-        
-        print(kwargs)
-        
-        # Only keeps the kwargs that are note note.
-        kwargs = {k: v for k, v in kwargs.items() if v is not None}
+        if self.custom_blob:
+            tb = self.custom_blob
+        else:
+            tb = TextBlob
 
-        blob = TextBlob(doc.text, **kwargs)
+        blob = tb(doc.text)
         return blob
     
     def get_blob(self, doc):
