@@ -23,6 +23,9 @@ textblob-fr = "^0.2.0"
 mkdocs-material = "^8.1.11"
 mkdocs-include-markdown-plugin = "^3.2.3"
 textblob-de = "^0.4.3"
+rich = "10.11.0"
+mdx-include = "^1.4.1"
+pytest-xdist = "^2.5.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
