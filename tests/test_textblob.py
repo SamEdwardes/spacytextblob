@@ -1,3 +1,4 @@
+from numpy import isin
 import spacy
 from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import TextBlob
@@ -11,9 +12,10 @@ def test_types():
     doc = nlp(text)
     
     # Check types
-    assert type(doc._.polarity) is float
-    assert type(doc._.subjectivity) is float
-    assert type(doc._.assessments) is list
+    assert isinstance(doc._.polarity, float)
+    assert isinstance(doc._.subjectivity, float)
+    assert isinstance(doc._.assessments, list)
+    assert isinstance(doc._.blob, TextBlob)
 
 
 def test_negative_sentiment():
@@ -74,6 +76,6 @@ def test_textblob_fr():
     nlp_fr = spacy.load("en_core_web_sm")
     nlp_fr.add_pipe("spacytextblob", config={"pos_tagger": PatternTagger, "analyzer": PatternAnalyzer})
     doc = nlp(text)
-    assert blob.tags == [('Quelle', 'DT'), ('belle', 'JJ'), ('matin\xe9e', 'NN')]
-    assert blob.sentiment == (0.8, 0.8)
+    assert doc.blob.tags == [('Quelle', 'DT'), ('belle', 'JJ'), ('matin\xe9e', 'NN')]
+    assert doc.blob.sentiment == (0.8, 0.8)
 

@@ -11,8 +11,8 @@ class SpacyTextBlob(object):
     
     def __init__(self, nlp, name, pos_tagger: Optional[Callable], analyzer: Optional[Callable]):
         # Register custom extensions
-        extensions = ["polarity", "subjectivity", "assessments"]
-        getters = [self.get_polarity, self.get_subjectivity, self.get_assessments]
+        extensions = ["blob", "polarity", "subjectivity", "assessments"]
+        getters = [self.get_blob, self.get_polarity, self.get_subjectivity, self.get_assessments]
         for ext, get in zip(extensions, getters):
             if not Doc.has_extension(ext):
                 Doc.set_extension(ext, default=None)
@@ -27,31 +27,34 @@ class SpacyTextBlob(object):
 
     def __call__(self, doc):
         # Sentiment at the doc level
-        sentiment = self.get_sentiment(doc)
-        doc._.set("polarity", sentiment.polarity)
-        doc._.set("subjectivity", sentiment.subjectivity)
-        doc._.set("assessments", sentiment.assessments)
+        blob = self.get_blob(doc)
+        doc._.set("blob", blob)
+        doc._.set("polarity", blob.sentiment.polarity)
+        doc._.set("subjectivity", blob.sentiment.subjectivity)
+        doc._.set("assessments", blob.sentiment_assessments.assessments)
         
         return doc
-            
-    def get_sentiment(self, doc):
+    
+    def create_blob(self, doc):
         kwargs = {
-            "pos_tagger", self.pos_tagger, 
-            "analyzer", self.analyzer
+            "pos_tagger": self.pos_tagger, 
+            "analyzer": self.analyzer
         }
         
         # Only keeps the kwargs that are note note.
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
         blob = TextBlob(doc.text, **kwargs)
-        sentiment = blob.sentiment_assessments
-        return sentiment
+        return blob
+    
+    def get_blob(self, doc):
+        return self.create_blob(doc)
     
     def get_polarity(self, doc):
-        return self.get_sentiment(doc).polarity
+        return self.create_blob(doc).polarity
     
     def get_subjectivity(self, doc):
-        return self.get_sentiment(doc).subjectivity
+        return self.create_blob(doc).subjectivity
     
     def get_assessments(self, doc):
-        return self.get_sentiment(doc).assessments
+        return self.create_blob(doc).sentiment_assessments.assessments
