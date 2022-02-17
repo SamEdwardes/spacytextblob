@@ -1,9 +1,9 @@
-from typing import Optional, Callable, Any
-from spacy.tokens import Doc, Span, Token
-from spacy.language import Language
+import warnings
+from typing import Any, Optional
 
 from rich import inspect, print
-
+from spacy.language import Language
+from spacy.tokens import Doc, Span, Token
 from textblob import TextBlob
 
 
@@ -66,12 +66,15 @@ class SpacyTextBlob(object):
         return self.create_blob(doc)
     
     def get_polarity(self, doc):
+        warnings.warn("`doc._.polarity` will be deprecated in future versions. Instead you should use `doc._.blob.polarity`.", DeprecationWarning)
         return self.create_blob(doc).polarity
     
     def get_subjectivity(self, doc):
+        warnings.warn("`doc._.subjectivity` will be deprecated in future versions. Instead you should use `doc._.blob.subjectivity`.", DeprecationWarning)
         return self.create_blob(doc).subjectivity
     
     def get_assessments(self, doc):
+        warnings.warn("`doc._.assessments` will be deprecated in future versions. Instead you should use `doc._.blob.sentiment_assessments.assessments`.", DeprecationWarning)
         return self.create_blob(doc).sentiment_assessments.assessments
     
 

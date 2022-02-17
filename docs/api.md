@@ -1,34 +1,33 @@
----
-id: api
-title: API Reference
----
-To make the usage simpler spacy provides custom extensions which a library can use. This makes it easier for the user to get the desired data. The below tables summaries the extensions.
+# API Reference
 
-## `spacy.Doc` extensions
+## Config
 
 
-| Extension | Type | Description | Default |
-|-----------|------|-------------|---------|
-| doc._.polarity | `Float` | The polarity of the document. The polarity score is a float within the range [-1.0, 1.0]. | `None` |
-| doc._.subjectivity | `Float` | The subjectivity of the document. The subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective. | `None` |
-| doc._.assessments | `tuple` | Return a tuple of form (polarity, subjectivity, assessments ) where polarity is a float within the range [-1.0, 1.0], subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective, and assessments is a list of polarity and subjectivity scores for the assessed tokens. | `None` |
+## Custom attributes
+
+When you add *spacytextblob* into your spaCy pipeline it exposes a custom attribute `._.blob`. This attribute is available for for the `Doc`, `Span`, and `Token` classes from spaCy.
+
+- `Doc._.blob`
+- `Span._.blob`
+- `Token._.blob`
+
+The section below outlines commonly accessed `._.blob` attributes and methods. See the [textblob docs](https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.TextBlob) for the complete listing of all attributes and methods that are available in `._.blob`.
+
+### Attributes
+
+| Name | Type | Description |
+|------|------|-------------|
+| `doc._.blob.polarity` | `Float` | The polarity of the document. The polarity score is a float within the range [-1.0, 1.0]. |
+| `doc._.blob.subjectivity` | `Float` | The subjectivity of the document. The subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective. |
+| `doc._.blob.sentiment_assessments.assessments` | `tuple` | Return a tuple of form (polarity, subjectivity, assessments ) where polarity is a float within the range [-1.0, 1.0], subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective, and assessments is a list of polarity and subjectivity scores for the assessed tokens. |
+
+### Methods
+
+#### `doc._.blob.ngrams(n=3)`
+
+| Name | Type | Description |
+|------|------|-------------|
+| n | `int` | The number of words to include in the ngram. By default `3`. |
+| RETURNS | `List[WordLists]` | |
 
 
-## `spacy.Span` extensions
-
-
-| Extension | Type | Description | Default |
-|-----------|------|-------------|---------|
-| span._.polarity | `Float` | The polarity of the span. The polarity score is a float within the range [-1.0, 1.0]. | `None` |
-| span._.subjectivity | `Float` | The subjectivity of the span. The subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective. | `None` |
-| span._.assessments | `tuple` | Return a tuple of form (polarity, subjectivity, assessments ) where polarity is a float within the range [-1.0, 1.0], subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective, and assessments is a list of polarity and subjectivity scores for the assessed tokens. | `None` |
-
-
-## `spacy.Token` extensions
-
-
-| Extension | Type | Description | Default |
-|-----------|------|-------------|---------|
-| token._.polarity | `Float` | The polarity of the token. The polarity score is a float within the range [-1.0, 1.0]. | `None` |
-| token._.subjectivity | `Float` | The subjectivity of the token. The subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective. | `None` |
-| token._.assessments | `tuple` | Return a tuple of form (polarity, subjectivity, assessments ) where polarity is a float within the range [-1.0, 1.0], subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective, and assessments is a list of polarity and subjectivity scores for the assessed tokens. | `None` |

@@ -1,5 +1,5 @@
 site_name: spacytextblob
-site_description: A TextBlob sentiment analysis pipeline compponent for spaCy.
+site_description: A TextBlob sentiment analysis pipeline component for spaCy.
 repo_url: https://github.com/samedwardes/spacytextblob
 repo_name: 'samedwardes/spacytextblob'
 edit_uri: ''
@@ -30,7 +30,6 @@ markdown_extensions:
 
 plugins:
   - search
-  - include-markdown
 
 extra:
   social:
@@ -43,7 +42,10 @@ extra:
 
 nav:
   - Home: 'index.md'
-  - getting_started.md
-  - textblob_extensions.md
-  - Examples:
-    - examples/example.md
+  - Tutorial:
+    - tutorial/installation.md
+    - tutorial/getting_started.md
+    - tutorial/textblob_extensions.md
+    - tutorial/examples.md
+  - changelog.md
+  - api.md

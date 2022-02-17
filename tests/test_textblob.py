@@ -1,10 +1,14 @@
-from numpy import isin
 import spacy
+import spacytextblob
 from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import TextBlob
 
 nlp = spacy.load("en_core_web_sm")
 nlp.add_pipe("spacytextblob")
+
+
+def test_version():
+    spacytextblob.__version__ == "4.0.0"
 
 
 def test_types():
@@ -23,8 +27,10 @@ def test_negative_sentiment():
     doc = nlp(text)
     # Check polarity
     assert doc._.polarity == -1.0
+    assert doc._.blob.polarity == -1.0
     assert doc[4]._.polarity == -1.0
-    [span._.polarity for span in doc.sents] == [-1.0 , -1.0]
+    assert doc[4]._.blob.polarity == -1.0
+    assert [span._.polarity for span in doc.sents] == [-1.0 , -1.0]
     # Check polarity
     assert doc._.subjectivity == 1.0
     assert doc[4]._.subjectivity == 1.0

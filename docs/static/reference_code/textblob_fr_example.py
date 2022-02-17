@@ -19,5 +19,8 @@ text = u"Quelle belle matinée"
 doc = nlp_fr(text)
 
 print(doc)
+# Quelle belle matinée
 print(doc._.blob)
+# Quelle belle matinée
 print(doc._.blob.sentiment)
+# Quelle belle matinée
