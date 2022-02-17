@@ -1,4 +1,4 @@
-# spaCyTextBlob <a href='https://spacytextblob.netlify.app/'><img src='website/static/img/logo-thumb-circle-250x250.png' align="right" height="139" /></a>
+# spacytextblob <a href='https://spacytextblob.netlify.app/'><img src='website/static/img/logo-thumb-circle-250x250.png' align="right" height="139" /></a>
 
 [![PyPI version](https://badge.fury.io/py/spacytextblob.svg)](https://badge.fury.io/py/spacytextblob)
 [![pytest](https://github.com/SamEdwardes/spaCyTextBlob/actions/workflows/pytest.yml/badge.svg)](https://github.com/SamEdwardes/spaCyTextBlob/actions/workflows/pytest.yml)
@@ -6,11 +6,11 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e2f2caac-7239-45a2-b145-a00205c3befb/deploy-status)](https://app.netlify.com/sites/spacytextblob/deploys)
 
 
-A TextBlob sentiment analysis pipeline compponent for spaCy. 
+A TextBlob sentiment analysis pipeline component for spaCy. 
 
-Version 3.0 is a major version update providing support for spaCy 3.0's new interface for adding pipeline components. As a result, it is not backwards compatible with previous versions of spaCyTextBlob. For compatability with spaCy 2.0 please use `pip install spacytextblob==0.1.7`.
+Version 3.0 is a major version update providing support for spaCy 3.0's new interface for adding pipeline components. As a result, it is not backwards compatible with previous versions of spaCyTextBlob. For compatibility with spaCy 2.0 please use `pip install spacytextblob==0.1.7`.
 
-*Note that version 1.0, and 2.0 have been skipped. The numbering has been aligned with spaCy's version numbering in the hopes of making it easier to compar.*
+*Note that version 1.0, and 2.0 have been skipped. The numbering has been aligned with spaCy's version numbering in the hopes of making it easier to compare.*
 
 - [Docs](https://spacytextblob.netlify.app/)
 - [GitHub](https://github.com/SamEdwardes/spaCyTextBlob)
@@ -64,22 +64,17 @@ nlp.add_pipe("spacytextblob")
 doc = nlp(text)
 ```
 
-
 ```python
 print('Polarity:', doc._.polarity)
 ```
 
     Polarity: -0.125
 
-
-
 ```python
 print('Sujectivity:', doc._.subjectivity)
 ```
 
     Sujectivity: 0.9
-
-
 
 ```python
 print('Assessments:', doc._.assessments)
@@ -90,12 +85,10 @@ print('Assessments:', doc._.assessments)
 
 Using `TextBlob`:
 
-
 ```python
 from textblob import TextBlob
 blob = TextBlob(text)
 ```
-
 
 ```python
 print(blob.sentiment_assessments.polarity)
@@ -103,22 +96,17 @@ print(blob.sentiment_assessments.polarity)
 
     -0.125
 
-
-
 ```python
 print(blob.sentiment_assessments.subjectivity)
 ```
 
     0.9
 
-
-
 ```python
 print(blob.sentiment_assessments.assessments)
 ```
 
     [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None), (['really', 'good'], 0.7, 0.6000000000000001, None), (['happy'], 0.8, 1.0, None)]
-
 
 ## Quick Reference
 
@@ -137,7 +125,7 @@ Polarity is a float within the range [-1.0, 1.0], subjectivity is a float within
 - TextBlob
     - [https://github.com/sloria/TextBlob](https://github.com/sloria/TextBlob)
     - [https://textblob.readthedocs.io/en/latest/](https://textblob.readthedocs.io/en/latest/)
-- negspaCy (for inpiration in writing pipeline and organizing repo)
+- negspaCy (for inspiration in writing pipeline and organizing repo)
     - [https://github.com/jenojp/negspacy](https://github.com/jenojp/negspacy)
 - spaCy custom components
     - [https://spacy.io/usage/processing-pipelines#custom-components](https://spacy.io/usage/processing-pipelines#custom-components)

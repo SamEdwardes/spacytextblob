@@ -1,21 +1,36 @@
-from typing import Optional, Callable
+from typing import Optional, Callable, Any
 from spacy.tokens import Doc, Span, Token
 from spacy.language import Language
+
+from rich import inspect, print
 
 from textblob import TextBlob
 
 
-
-@Language.factory("spacytextblob", default_config={"pos_tagger": None, "analyzer": None})
-def create_spacytextblob_component(nlp: Language, name: str, pos_tagger: Optional[Callable], analyzer: Optional[Callable]):
-    return SpacyTextBlob(nlp, pos_tagger, analyzer)
+@Language.factory("spacytextblob", default_config={"blob_only": False, "pos_tagger": None, "analyzer": None})
+def create_spacytextblob_component(
+    nlp: Language, 
+    name: str, 
+    blob_only: bool, 
+    pos_tagger: Optional[Any], 
+    analyzer: Optional[Any]
+):
+    return SpacyTextBlob(nlp, blob_only, pos_tagger, analyzer)
 
 
 class SpacyTextBlob(object):
     """A spacy pipeline object for sentiment analysis."""
     
-    def __init__(self, nlp: Language, pos_tagger: Optional[Callable], analyzer: Optional[Callable]):
+    def __init__(
+        self, 
+        nlp: Language, 
+        blob_only: bool = False, 
+        pos_tagger: Optional[Any] = None, 
+        analyzer: Optional[Any] = None
+    ):
         # Register custom extensions
+        print(f"{pos_tagger=}")
+        print(f"{analyzer=}")
         extensions = ["blob", "polarity", "subjectivity", "assessments"]
         getters = [self.get_blob, self.get_polarity, self.get_subjectivity, self.get_assessments]
         
@@ -28,6 +43,7 @@ class SpacyTextBlob(object):
                 Token.set_extension(ext, getter=get)
 
         # Set class attributes
+        self.blob_only = blob_only
         self.pos_tagger = pos_tagger
         self.analyzer = analyzer
 
@@ -35,9 +51,10 @@ class SpacyTextBlob(object):
         # Sentiment at the doc level
         blob = self.get_blob(doc)
         doc._.set("blob", blob)
-        doc._.set("polarity", blob.sentiment.polarity)
-        doc._.set("subjectivity", blob.sentiment.subjectivity)
-        doc._.set("assessments", blob.sentiment_assessments.assessments)
+        if self.blob_only == False:
+            doc._.set("polarity", blob.sentiment.polarity)
+            doc._.set("subjectivity", blob.sentiment.subjectivity)
+            doc._.set("assessments", blob.sentiment_assessments.assessments)
         
         return doc
     
@@ -46,6 +63,8 @@ class SpacyTextBlob(object):
             "pos_tagger": self.pos_tagger, 
             "analyzer": self.analyzer
         }
+        
+        print(kwargs)
         
         # Only keeps the kwargs that are note note.
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
