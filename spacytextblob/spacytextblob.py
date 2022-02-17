@@ -5,14 +5,20 @@ from spacy.language import Language
 from textblob import TextBlob
 
 
+
 @Language.factory("spacytextblob", default_config={"pos_tagger": None, "analyzer": None})
+def create_spacytextblob_component(nlp: Language, name: str, pos_tagger: Optional[Callable], analyzer: Optional[Callable]):
+    return SpacyTextBlob(nlp, pos_tagger, analyzer)
+
+
 class SpacyTextBlob(object):
     """A spacy pipeline object for sentiment analysis."""
     
-    def __init__(self, nlp, name, pos_tagger: Optional[Callable], analyzer: Optional[Callable]):
+    def __init__(self, nlp: Language, pos_tagger: Optional[Callable], analyzer: Optional[Callable]):
         # Register custom extensions
         extensions = ["blob", "polarity", "subjectivity", "assessments"]
         getters = [self.get_blob, self.get_polarity, self.get_subjectivity, self.get_assessments]
+        
         for ext, get in zip(extensions, getters):
             if not Doc.has_extension(ext):
                 Doc.set_extension(ext, default=None)
@@ -58,3 +64,5 @@ class SpacyTextBlob(object):
     
     def get_assessments(self, doc):
         return self.create_blob(doc).sentiment_assessments.assessments
+    
+

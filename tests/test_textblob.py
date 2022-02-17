@@ -62,20 +62,20 @@ def test_compare_to_text_blob():
     assert blob.sentiment_assessments[2] == doc._.assessments
 
 
-def test_textblob_fr():
-    from textblob import TextBlob
-    from textblob_fr import PatternTagger, PatternAnalyzer
+# def test_textblob_fr():
+#     from textblob import TextBlob
+#     from textblob_fr import PatternTagger, PatternAnalyzer
 
-    # Using TextBlob
-    text = u"Quelle belle matinée"
-    blob = TextBlob(text, pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
-    ## assert blob.tags == [('Quelle', 'DT'), ('belle', 'JJ'), ('matin\xe9e', 'NN')] # https://github.com/sloria/textblob-fr/issues/10
-    assert blob.sentiment == (0.8, 0.8)
+#     # Using TextBlob
+#     text = u"Quelle belle matinée"
+#     blob = TextBlob(text, pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
+#     ## assert blob.tags == [('Quelle', 'DT'), ('belle', 'JJ'), ('matin\xe9e', 'NN')] # https://github.com/sloria/textblob-fr/issues/10
+#     assert blob.sentiment == (0.8, 0.8)
 
-    # Using spacytextblob
-    nlp_fr = spacy.load("en_core_web_sm")
-    nlp_fr.add_pipe("spacytextblob", config={"pos_tagger": PatternTagger, "analyzer": PatternAnalyzer})
-    doc = nlp(text)
-    ## assert doc.blob.tags == [('Quelle', 'DT'), ('belle', 'JJ'), ('matin\xe9e', 'NN')] # https://github.com/sloria/textblob-fr/issues/10
-    assert doc.blob.sentiment == (0.8, 0.8)
+#     # Using spacytextblob
+#     nlp_fr = spacy.load("en_core_web_sm")
+#     nlp_fr.add_pipe("spacytextblob", config={"pos_tagger": PatternTagger, "analyzer": PatternAnalyzer})
+#     doc = nlp(text)
+#     ## assert doc.blob.tags == [('Quelle', 'DT'), ('belle', 'JJ'), ('matin\xe9e', 'NN')] # https://github.com/sloria/textblob-fr/issues/10
+#     assert doc.blob.sentiment == (0.8, 0.8)
 
