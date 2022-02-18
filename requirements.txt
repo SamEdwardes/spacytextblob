@@ -1,0 +1,3 @@
+# For building the docs with netlify
+mkdocs-material
+mdx-include

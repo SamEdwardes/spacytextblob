@@ -1,8 +1,5 @@
 # API Reference
 
-## Config
-
-
 ## Custom attributes
 
 When you add *spacytextblob* into your spaCy pipeline it exposes a custom attribute `._.blob`. This attribute is available for for the `Doc`, `Span`, and `Token` classes from spaCy.
@@ -23,7 +20,7 @@ The section below outlines commonly accessed `._.blob` attributes and methods. S
 
 ### Methods
 
-#### `doc._.blob.ngrams(n=3)`
+**`doc._.blob.ngrams`**
 
 | Name | Type | Description |
 |------|------|-------------|
@@ -31,3 +28,38 @@ The section below outlines commonly accessed `._.blob` attributes and methods. S
 | RETURNS | `List[WordLists]` | |
 
 
+## Config
+
+When adding *spacytextblob* to your spaCy pipeline you can optionally pass additional parameters into the `config` parameter:
+
+| Name | Type | Description |
+|------|------|-------------|
+| `blob_only` | `bool` | If True, *spacytextblob* will only expose `._.blob` and not attempt to expose `._.polarity`, `._.subjectivity`, or `._.assessments`. This should always be set to True when using TextBlob extensions. By default `False`. |
+| `custom_blob` | `Dict[str, str]` | The `"custom_blob"` key should be assigned to a dictionary that tells spaCy what function to replace `textblob.TextBlob` with. In this case, we want to replace it with `TextBlobDE`. The key of the dictionary is `"@misc"`. This tells spaCy to look into the misc section of the spaCy register. The value should be the string name of a function that you have registered with spaCy. See the [TextBlob extensions](tutorial/textblob_extensions.md) section for more details. |
+
+
+```python
+import spacy
+from spacytextblob.spacytextblob import SpacyTextBlob
+
+nlp = spacy.load("de_core_news_sm")
+
+nlp.add_pipe( "spacytextblob", config={
+    "blob_only": ...,     # bool
+    "custom_blob": ...    # Dict[str, str]
+})
+```
+
+### Examples
+
+Using *spacytextblob* without an extension:
+
+```python
+{! docs/static/reference_code/spacytextblob_example.py !}
+```
+
+Using *spacytextblob* with an extension:
+
+```python
+{! docs/static/reference_code/textblob_de_example.py !}
+```

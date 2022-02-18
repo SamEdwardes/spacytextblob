@@ -18,7 +18,7 @@ config = {
     "custom_blob": {"@misc": "spacytextblob.de_blob"}
 }
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("de_core_news_sm")
 nlp.add_pipe("spacytextblob", config=config)
 doc = nlp(text)
 
