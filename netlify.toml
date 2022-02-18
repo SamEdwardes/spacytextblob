@@ -1,3 +1,4 @@
 [build]
+  base = "."
   publish = "site/"
   command = "mkdocs build"
