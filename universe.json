@@ -1,0 +1,31 @@
+{
+    "id": "spacy-textblob",
+    "title": "spaCyTextBlob",
+    "slogan": "Easy sentiment analysis for spaCy using TextBlob. Now supports spaCy 3.0!",
+    "thumb": "https://github.com/SamEdwardes/spaCyTextBlob/raw/main/website/static/img/logo-thumb-square-250x250.png",
+    "description": "spaCyTextBlob is a pipeline component that enables sentiment analysis using the [TextBlob](https://github.com/sloria/TextBlob) library. It will add the additional extensions `._.polarity`, `._.subjectivity`, and `._.assessments` to `Doc`, `Span`, and `Token` objects. For spaCy 2 please use `pip install pip install spacytextblob==0.1.7`",
+    "github": "SamEdwardes/spaCyTextBlob",
+    "pip": "spacytextblob",
+    "code_example": [
+        "import spacy",
+        "from spacytextblob.spacytextblob import SpacyTextBlob",
+        "",
+        "nlp = spacy.load('en_core_web_sm')",
+        "nlp.add_pipe('spacytextblob')",
+        "text = 'I had a really horrible day. It was the worst day ever! But every now and then I have a really good day that makes me happy.'",
+        "doc = nlp(text)",
+        "doc._.polarity      # Polarity: -0.125",
+        "doc._.subjectivity  # Sujectivity: 0.9",
+        "doc._.assessments   # Assessments: [(['really', 'horrible'], -1.0, 1.0, None), (['worst', '!'], -1.0, 1.0, None), (['really', 'good'], 0.7, 0.6000000000000001, None), (['happy'], 0.8, 1.0, None)]"
+    ],
+    "code_language": "python",
+    "url": "https://spacytextblob.netlify.app/",
+    "author": "Sam Edwardes",
+    "author_links": {
+        "twitter": "TheReaLSamlam",
+        "github": "SamEdwardes",
+        "website": "https://samedwardes.com"
+    },
+    "category": ["pipeline"],
+    "tags": ["sentiment", "textblob"]
+}
