@@ -12,13 +12,6 @@ A TextBlob sentiment analysis pipeline component for spaCy.
 - [PyPi](https://pypi.org/project/spacytextblob/)
 - [spaCy Universe](https://spacy.io/universe/project/spacy-textblob)
 
-## Table of Contents
-
-- [Install](#install)
-- [Quick Start](#quick-start)
-- [Quick Reference](#quick-reference)
-- [Reference and Attribution](#reference-and-attribution)
-
 ## Install
 
 Install *spacytextblob* from PyPi.
