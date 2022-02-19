@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "spacytextblob"
-version = "4.0.0-alpha.0"
+version = "4.0.0"
 description = "A TextBlob sentiment analysis pipeline component for spaCy."
 authors = ["SamEdwardes <edwardes.s@gmail.com>"]
 license = "MIT"

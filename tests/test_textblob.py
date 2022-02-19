@@ -8,7 +8,7 @@ nlp.add_pipe("spacytextblob")
 
 
 def test_version():
-    spacytextblob.__version__ == "4.0.0-alpha.0"
+    spacytextblob.__version__ == "4.0.0"
 
 
 def test_types():

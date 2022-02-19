@@ -1,10 +1,29 @@
-# Contiributing
+# Contributing
 
-spaCyTextBlob is happy to accept contributions from the community. Please review the guidelines below.
+*spacytextblob* is happy to accept contributions from the community. Please review the guidelines below.
+
+## Development environment
+
+### poetry
+
+`poetry` is used to manage python dependencies. See the docs on how to install python [https://python-poetry.org/](https://python-poetry.org/). To activate the poetry virtual environment run the following commands:
+
+```bash
+poetry install
+poetry shell
+```
+
+### just
+
+`just` is used to run scripts. See the just docs for instructions on how to install: [https://github.com/casey/just](https://github.com/casey/just).
 
 ## Code formatting
 
 Please use the [black](https://black.readthedocs.io/en/stable/) for formatting code before submitting a PR.
+
+```bash
+black spacytextblob
+```
 
 ## Testing
 
@@ -16,11 +35,8 @@ pytest
 
 ## Docs
 
-To build the docs please run:
+To build the docs and visually inspect the docs please run:
 
 ```bash
-bash scripts/build_docs.sh
+just docs
 ```
-
-If you add new documentation using a jupyter notebook please make sure to update [scripts/build_docs.sh](scripts/build_docs.sh) to include the new notebook.
-

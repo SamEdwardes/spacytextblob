@@ -58,7 +58,13 @@ The following extensions have been tested and are supported. Other extensions ma
 
 ### textblob-de
 
-textblob-de is a TextBlob extensions that enables German language support for TextBlob by Steven Loria ([https://github.com/markuskiller/textblob-de](https://github.com/markuskiller/textblob-de)). To use it with *spacytextblob* First install a spaCy model that supports German ([https://spacy.io/models/de](https://spacy.io/models/de)):
+textblob-de is a TextBlob extensions that enables German language support for TextBlob by Steven Loria ([https://github.com/markuskiller/textblob-de](https://github.com/markuskiller/textblob-de)). 
+
+```bash
+pip install textblob-de
+```
+
+To use it with *spacytextblob* First install a spaCy model that supports German ([https://spacy.io/models/de](https://spacy.io/models/de)):
 
 ```bash
 python -m spacy download de_core_news_sm
@@ -72,7 +78,13 @@ The code below demonstrates how you can then use and access textblob-de within *
 
 ### textblob-fr
 
-textblob-fr is a TextBlob extension that enables French language support for TextBlob ([https://github.com/sloria/textblob-fr](https://github.com/sloria/textblob-fr)). To use it with *spacytextblob* First install a spaCy model that supports French ([https://spacy.io/models/fr](https://spacy.io/models/fr)):
+textblob-fr is a TextBlob extension that enables French language support for TextBlob ([https://github.com/sloria/textblob-fr](https://github.com/sloria/textblob-fr)). 
+
+```bash
+pip install textblob-fr
+```
+
+To use it with *spacytextblob* First install a spaCy model that supports French ([https://spacy.io/models/fr](https://spacy.io/models/fr)):
 
 ```bash
 python -m spacy download fr_core_news_sm
