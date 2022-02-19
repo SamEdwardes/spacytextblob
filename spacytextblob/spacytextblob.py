@@ -1,7 +1,6 @@
 import warnings
 from typing import Any, Optional
 
-from rich import inspect, print
 from spacy.language import Language
 from spacy.tokens import Doc, Span, Token
 from textblob import TextBlob
