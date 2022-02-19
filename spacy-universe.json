@@ -2,8 +2,8 @@
     "id": "spacy-textblob",
     "title": "spacytextblob",
     "slogan": "A TextBlob sentiment analysis pipeline component for spaCy.",
-    "thumb": "https://github.com/SamEdwardes/spacytextblob/raw/main/website/static/img/logo-thumb-square-250x250.png",
-    "description": "spacytextblob is a pipeline component that enables sentiment analysis using the [TextBlob](https://github.com/sloria/TextBlob) library. It will add the additional extensions `._.polarity`, `._.subjectivity`, and `._.assessments` to `Doc`, `Span`, and `Token` objects. For spaCy 2 please use `pip install pip install spacytextblob==0.1.7`",
+    "thumb": "https://github.com/SamEdwardes/spacytextblob/raw/main/docs/static/img/logo-thumb-square-250x250.png",
+    "description": "spacytextblob is a pipeline component that enables sentiment analysis using the [TextBlob](https://github.com/sloria/TextBlob) library. It will add the additional extensions `._.blob`, to `Doc`, `Span`, and `Token` objects.",
     "github": "SamEdwardes/spacytextblob",
     "pip": "spacytextblob",
     "code_example": [

@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.0 (TBD)
+## 4.0.0 (2022-02-19)
 
 - New custom attribute `doc._.blob`, `span._.blob`, `token._.blob`.
 - Support for TextBlob extensions (https://textblob.readthedocs.io/en/dev/extensions.html#extensions).

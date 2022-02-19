@@ -10,6 +10,7 @@ A TextBlob sentiment analysis pipeline component for spaCy.
 - [Docs](https://spacytextblob.netlify.app/)
 - [GitHub](https://github.com/SamEdwardes/spacytextblob)
 - [PyPi](https://pypi.org/project/spacytextblob/)
+- [spaCy Universe](https://spacy.io/universe/project/spacy-textblob)
 
 ## Table of Contents
 
