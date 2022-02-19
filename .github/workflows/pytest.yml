@@ -33,6 +33,10 @@ jobs:
         pip install -r requirements.txt
         python -m textblob.download_corpora
         python -m spacy download en_core_web_sm
+        pip install textblob-de
+        python -m spacy download de_core_news_sm
+        pip install textblob-fr
+        python -m spacy download fr_core_news_sm
         pip install pytest
     - name: Test with pytest
       run: |
