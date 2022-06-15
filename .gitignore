@@ -131,3 +131,4 @@ dmypy.json
 # >>>>> added by sam >>>>>>>>>>>
 .vscode/*
 dev_notes.md
+_tmp/*

@@ -1,6 +1,6 @@
 import spacy
 import spacytextblob
-from spacytextblob.spacytextblob import SpacyTextBlob
+# from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import TextBlob
 
 nlp = spacy.load("en_core_web_sm")
@@ -112,7 +112,7 @@ def test_textblob_de():
     assert blob.sentences == sentences
 
 
-def test_spacytextblob_de():
+def test_spacytextblob_de_legacy():
     from textblob_de import TextBlobDE
     from textblob import Sentence
     text = '''Heute ist der 3. Mai 2014 und Dr. Meier feiert seinen 43. Geburtstag. Ich muss unbedingt daran denken, Mehl, usw. für einen Kuchen einzukaufen. Aber leider habe ich nur noch EUR 3.50 in meiner Brieftasche.'''
@@ -123,6 +123,31 @@ def test_spacytextblob_de():
     
     config = {
         "blob_only": True,
+        "custom_blob": {"@misc": "spacytextblob.de_blob"}
+    }
+    
+    nlp_de = spacy.load("en_core_web_sm")
+    nlp_de.add_pipe("spacytextblob", config=config)
+    doc = nlp_de(text)
+    
+    sentences = [
+        Sentence("Heute ist der 3. Mai 2014 und Dr. Meier feiert seinen 43. Geburtstag."),
+        Sentence("Ich muss unbedingt daran denken, Mehl, usw. für einen Kuchen einzukaufen."),
+        Sentence("Aber leider habe ich nur noch EUR 3.50 in meiner Brieftasche.")
+    ]
+    assert doc._.blob.sentences == sentences
+
+
+def test_spacytextblob_de():
+    from textblob_de import TextBlobDE
+    from textblob import Sentence
+    text = '''Heute ist der 3. Mai 2014 und Dr. Meier feiert seinen 43. Geburtstag. Ich muss unbedingt daran denken, Mehl, usw. für einen Kuchen einzukaufen. Aber leider habe ich nur noch EUR 3.50 in meiner Brieftasche.'''
+    
+    @spacy.registry.misc("spacytextblob.de_blob")
+    def create_de_blob():
+        return TextBlobDE
+    
+    config = {
         "custom_blob": {"@misc": "spacytextblob.de_blob"}
     }
     
