@@ -1,31 +1,43 @@
-[tool.poetry]
+[project]
 name = "spacytextblob"
-version = "4.0.0"
+version = "5.0.0"
 description = "A TextBlob sentiment analysis pipeline component for spaCy."
-authors = ["SamEdwardes <edwardes.s@gmail.com>"]
-license = "MIT"
 readme = "README.md"
-repository = "https://github.com/SamEdwardes/spacytextblob"
-documentation = "https://spacytextblob.netlify.app/"
+license = "MIT"
 keywords = ["python", "spacy", "textblob", "nlp"]
+requires-python = ">=3.9"
+dependencies = [
+    "spacy>=3.0.0",
+    "textblob>=0.18.0.post0",
+]
+maintainers = [
+  {name = "Sam Edwardes", email = "edwardes.s@gmail.com"}
+]
 
-[tool.poetry.dependencies]
-python = "^3.7"
-textblob = "^0.15.3"
-spacy = "^3.0"
-
-[tool.poetry.dev-dependencies]
-pytest = "^6.1.2"
-black = "^20.8b1"
-en_core_web_sm = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz#egg=en_core_web_sm"}
-textblob-fr = "^0.2.0"
-mkdocs-material = "^8.1.11"
-textblob-de = "^0.4.3"
-mdx-include = "^1.4.1"
-pytest-xdist = "^2.5.0"
-rich = "^11.2.0"
-ipykernel = "^6.9.1"
+[project.urls]
+Homepage = "https://spacytextblob.netlify.app/"
+Documentation = "https://spacytextblob.netlify.app/"
+Repository = "https://github.com/SamEdwardes/spacytextblob"
+Issues = "https://github.com/SamEdwardes/spacytextblob/issues"
+Changelog = "https://github.com/SamEdwardes/spacytextblob/blob/main/docs/changelog.md"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "ipykernel>=6.29.5",
+    "mdx-include>=1.4.2",
+    "mkdocs-material>=9.5.40",
+    "pytest>=8.3.3",
+    "pytest-xdist>=3.6.1",
+    "rich>=13.9.2",
+    "textblob-fr>=0.2.0",
+    "en-core-web-sm",
+    "fr-core-news-sm",
+]
+
+[tool.uv.sources]
+en-core-web-sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" }
+fr-core-news-sm = { url = "https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.8.0/fr_core_news_sm-3.8.0-py3-none-any.whl" }

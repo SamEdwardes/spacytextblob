@@ -1,7 +1,8 @@
 import spacy
-from spacytextblob.spacytextblob import SpacyTextBlob
 
-nlp = spacy.load('en_core_web_sm')
+from spacytextblob.spacytextblob import SpacyTextBlob  # noqa: F401
+
+nlp = spacy.load("en_core_web_sm")
 text = "I had a really horrible day. It was the worst day ever! But every now and then I have a really good day that makes me happy."
 nlp.add_pipe("spacytextblob")
 doc = nlp(text)

@@ -7,8 +7,9 @@ on:
   pull_request:
     branches: [ main ]
   push:
-    branches: 
+    branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
 
     steps:
     - uses: actions/checkout@v2
@@ -24,20 +25,9 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install python dependencies
+    - name: Setup uv
       run: |
-        curl -sSL https://install.python-poetry.org | python3 -
-        poetry export --without-hashes --output requirements.txt
-        python -m pip install --upgrade pip
-        pip install wheel
-        pip install -r requirements.txt
-        python -m textblob.download_corpora
-        python -m spacy download en_core_web_sm
-        pip install textblob-de
-        python -m spacy download de_core_news_sm
-        pip install textblob-fr
-        python -m spacy download fr_core_news_sm
-        pip install pytest
+        curl -LsSf https://astral.sh/uv/install.sh | sh
     - name: Test with pytest
       run: |
-        pytest
+        uv run --python ${{ matrix.python-version }} --all-extras pytest

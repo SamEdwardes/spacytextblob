@@ -1,21 +1,21 @@
 import spacy
-from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import Blobber
-from textblob_fr import PatternTagger, PatternAnalyzer
+from textblob_fr import PatternAnalyzer, PatternTagger
+
+from spacytextblob.spacytextblob import SpacyTextBlob  # noqa: F401
+
 
 @spacy.registry.misc("spacytextblob.fr_blob")
 def create_fr_blob():
     tb = Blobber(pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
     return tb
 
-config = {
-    "blob_only": True,
-    "custom_blob": {"@misc": "spacytextblob.fr_blob"}
-}
+
+config = {"custom_blob": {"@misc": "spacytextblob.fr_blob"}}
 
 nlp_fr = spacy.load("fr_core_news_sm")
 nlp_fr.add_pipe("spacytextblob", config=config)
-text = u"Quelle belle matinée"
+text = "Quelle belle matinée"
 doc = nlp_fr(text)
 
 print(doc)
@@ -23,4 +23,4 @@ print(doc)
 print(doc._.blob)
 # Quelle belle matinée
 print(doc._.blob.sentiment)
-# Quelle belle matinée
+# (0.8, 0.8)
