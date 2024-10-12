@@ -34,7 +34,6 @@ When adding *spacytextblob* to your spaCy pipeline you can optionally pass addit
 
 | Name | Type | Description |
 |------|------|-------------|
-| `blob_only` | `bool` | If True, *spacytextblob* will only expose `._.blob` and not attempt to expose `._.polarity`, `._.subjectivity`, or `._.assessments`. This should always be set to True when using TextBlob extensions. By default `False`. |
 | `custom_blob` | `Dict[str, str]` | The `"custom_blob"` key should be assigned to a dictionary that tells spaCy what function to replace `textblob.TextBlob` with. In this case, we want to replace it with `TextBlobDE`. The key of the dictionary is `"@misc"`. This tells spaCy to look into the misc section of the spaCy register. The value should be the string name of a function that you have registered with spaCy. See the [TextBlob extensions](tutorial/textblob_extensions.md) section for more details. |
 
 
@@ -45,7 +44,6 @@ from spacytextblob.spacytextblob import SpacyTextBlob
 nlp = spacy.load("de_core_news_sm")
 
 nlp.add_pipe( "spacytextblob", config={
-    "blob_only": ...,     # bool
     "custom_blob": ...    # Dict[str, str]
 })
 ```
@@ -61,5 +59,5 @@ Using *spacytextblob* without an extension:
 Using *spacytextblob* with an extension:
 
 ```python
-{! docs/static/reference_code/textblob_de_example.py !}
+{! docs/static/reference_code/textblob_fr_example.py !}
 ```

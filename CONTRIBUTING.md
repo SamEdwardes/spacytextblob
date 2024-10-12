@@ -4,13 +4,12 @@
 
 ## Development environment
 
-### poetry
+### uv
 
-`poetry` is used to manage python dependencies. See the docs on how to install python [https://python-poetry.org/](https://python-poetry.org/). To activate the poetry virtual environment run the following commands:
+`uv` is used to manage python dependencies. Run the following to install `uv`:
 
 ```bash
-poetry install
-poetry shell
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ### just
@@ -19,10 +18,8 @@ poetry shell
 
 ## Code formatting
 
-Please use the [black](https://black.readthedocs.io/en/stable/) for formatting code before submitting a PR.
-
 ```bash
-black spacytextblob
+just format
 ```
 
 ## Testing
@@ -30,7 +27,11 @@ black spacytextblob
 Please validate that all tests pass before submitting a PR by running:
 
 ```bash
-pytest
+# Test against the latest supported version of Python
+just test
+
+# Tet against all supported versions of Python
+just test-matrix
 ```
 
 ## Docs
@@ -38,5 +39,5 @@ pytest
 To build the docs and visually inspect the docs please run:
 
 ```bash
-just docs
+just preview-docs
 ```
