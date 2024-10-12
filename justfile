@@ -15,14 +15,14 @@ publish-test:
     rm -rf dist
     uv build
     uv publish --token $(op read "op://Private/Test PyPI/Token") --publish-url https://test.pypi.org/legacy/
-    open https://test.pypi.org/project/spacypdfreader/
+    open https://test.pypi.org/project/spacytextblob/
 
 [group('package')]
 publish:
     rm -rf dist
     uv build
     uv publish --token $(op read "op://Private/PyPI/Token")
-    open https://pypi.org/project/spacypdfreader/
+    open https://pypi.org/project/spacytextblob/
 
 # ------------------------------------------------------------------------------
 # Lint
