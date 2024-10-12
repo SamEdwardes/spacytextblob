@@ -1,4 +1,4 @@
 [build]
   base = "."
   publish = "site/"
-  command = 'mkdocs build'
+  command = 'pip install uv && uv run mkdocs build'
