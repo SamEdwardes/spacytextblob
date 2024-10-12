@@ -1,7 +1,4 @@
 [build]
   base = "."
   publish = "site/"
-  command = """
-  curl -LsSf https://astral.sh/uv/install.sh | sh
-  "${HOME}/.cargo/bin/uv" run mkdocs build
-  """
+  command = 'mkdocs build'
