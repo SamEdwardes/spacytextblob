@@ -1,6 +1,6 @@
 # Contributing
 
-*spacytextblob* is happy to accept contributions from the community. Please review the guidelines below.
+_spacytextblob_ is happy to accept contributions from the community. Please review the guidelines below.
 
 ## Development environment
 
@@ -41,3 +41,25 @@ To build the docs and visually inspect the docs please run:
 ```bash
 just preview-docs
 ```
+
+## Deployment checklist
+
+Before merging changes into main the following must be completed:
+
+- [ ] Bump the version number in _pyproject.toml_ and _spacypdfreader.**init**.py_
+- [ ] Format the code: `just format`
+- [ ] Lint: `just lint`
+- [ ] Run pytest:
+
+  ```bash
+  just test-matrix
+  ```
+
+- Test publishing to test PyPI: `just publish-test`
+- [ ] Check the docs locally: `just preview-docs`
+
+After merging the pull request:
+
+- Docs will be automatically published by Netlify, verify deployment was successful
+- [ ] Create a new release on GitHub
+- [ ] Publish latest package to PyPi: `just publish`
