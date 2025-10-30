@@ -1,5 +1,16 @@
 # Changelog
 
+## 5.1.0 (2025-10-30)
+
+**Changes**
+
+- Support for Python 3.9 to Python 3.13
+- Use `uv_build` back end instead of hatchling.
+
+**Fixes**
+
+None
+
 ## 5.0.0 (2024-10-12)
 
 **Breaking changes**
@@ -15,8 +26,8 @@
 ## 4.0.0 (2022-02-19)
 
 - New custom attribute `doc._.blob`, `span._.blob`, `token._.blob`.
-- Support for TextBlob extensions (https://textblob.readthedocs.io/en/dev/extensions.html#extensions).
-- Docs are build using Material for MkDocs (https://squidfunk.github.io/mkdocs-material/) instead of Docusaurus.
+- Support for TextBlob extensions (<https://textblob.readthedocs.io/en/dev/extensions.html#extensions>).
+- Docs are build using Material for MkDocs (<https://squidfunk.github.io/mkdocs-material/>) instead of Docusaurus.
 
 ## 3.0.1 (2021-05-05)
 
@@ -29,3 +40,4 @@
 ## 0.1.0 to 0.1.7
 
 - Supports spaCy 2.0 API.
+

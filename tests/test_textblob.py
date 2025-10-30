@@ -18,7 +18,7 @@ def get_nlp() -> spacy.language.Language:
 
 
 def test_version():
-    assert spacytextblob.__version__ == "5.0.0"
+    assert spacytextblob.__version__ == "5.1.0"
 
 
 def test_types():

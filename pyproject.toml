@@ -1,17 +1,25 @@
 [project]
 name = "spacytextblob"
-version = "5.0.0"
+version = "5.1.0"
 description = "A TextBlob sentiment analysis pipeline component for spaCy."
 readme = "README.md"
 license = "MIT"
 keywords = ["python", "spacy", "textblob", "nlp"]
-requires-python = ">=3.9"
-dependencies = [
-    "spacy>=3.0.0",
-    "textblob>=0.18.0.post0",
-]
-maintainers = [
-  {name = "Sam Edwardes", email = "edwardes.s@gmail.com"}
+requires-python = ">=3.9, <3.14"
+dependencies = ["spacy>=3.8.7", "textblob>=0.18.0.post0"]
+maintainers = [{ name = "Sam Edwardes", email = "edwardes.s@gmail.com" }]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Text Processing",
 ]
 
 [project.urls]
@@ -25,19 +33,19 @@ Changelog = "https://github.com/SamEdwardes/spacytextblob/blob/main/docs/changel
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.uv]
-dev-dependencies = [
-    "ipykernel>=6.29.5",
-    "mdx-include>=1.4.2",
-    "mkdocs-material>=9.5.40",
-    "pytest>=8.3.3",
-    "pytest-xdist>=3.6.1",
-    "rich>=13.9.2",
-    "textblob-fr>=0.2.0",
-    "en-core-web-sm",
-    "fr-core-news-sm",
-]
 
 [tool.uv.sources]
 en-core-web-sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" }
 fr-core-news-sm = { url = "https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.8.0/fr_core_news_sm-3.8.0-py3-none-any.whl" }
+
+[dependency-groups]
+dev = [
+  "mdx-include>=1.4.2",
+  "mkdocs-material>=9.6.22",
+  "pytest>=8.4.2",
+  "pytest-xdist>=3.8.0",
+  "rich>=14.2.0",
+  "textblob-fr>=0.2.0",
+  "en-core-web-sm",
+  "fr-core-news-sm",
+]

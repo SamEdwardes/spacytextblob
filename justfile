@@ -44,8 +44,8 @@ lint:
 # ------------------------------------------------------------------------------
 
 [group('tests')]
-test version="3.12":
-    uv run --python {{version}} --all-extras pytest
+test version="3.13":
+    UV_PROJECT_ENVIRONMENT="./.venv-{{version}}" uv run --python {{version}} --all-extras pytest
 
 [group('tests')]
 test-matrix:
@@ -53,10 +53,6 @@ test-matrix:
     just test 3.10
     just test 3.11
     just test 3.12
-
-[group('tests')]
-test-pre-release-python:
-    # As of 2024-10-12 3.13 is failing
     just test 3.13
 
 [group('tests')]
